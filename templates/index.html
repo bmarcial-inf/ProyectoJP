@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chatbot Profesional</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="chat-container">
+    <div class="header">
+        🤖 Chatbot Profesional
+        <button onclick="clearChat()">🧹</button>
+    </div>
+
+    <div id="chat-box"></div>
+
+    <div class="input-area">
+        <input id="input" type="text" placeholder="Escribe aquí..." onkeypress="handle(event)">
+        <button onclick="send()">➤</button>
+    </div>
+</div>
+
+<script>
+function handle(e){
+    if(e.key === "Enter") send();
+}
+
+function send() {
+    let msg = document.getElementById("input").value;
+    if(!msg) return;
+
+    fetch("/get", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({message: msg})
+    })
+    .then(r => r.json())
+    .then(data => {
+        let box = document.getElementById("chat-box");
+        box.innerHTML += `<div class="msg user">Tú: ${msg}</div>`;
+        box.innerHTML += `<div class="msg bot">Bot: ${data.response}</div>`;
+        box.scrollTop = box.scrollHeight;
+        document.getElementById("input").value = "";
+    });
+}
+
+function clearChat(){
+    fetch("/clear").then(() => {
+        document.getElementById("chat-box").innerHTML = "";
+    });
+}
+</script>
+</body>
+</html>

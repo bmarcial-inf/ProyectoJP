@@ -2,47 +2,38 @@
   "intents": [
     {
       "tag": "saludo",
-      "patterns": ["Hola", "Buenos días", "Qué tal", "Hey", "Buenas"],
-      "responses": [
-        "¡Hola! 👋 ¿En qué puedo ayudarte hoy?",
-        "¡Hola! ¿Qué necesitas?"
-      ]
+      "patterns": ["hola", "buenos dias", "que tal", "hey", "buenas"],
+      "responses": ["Hola 😊 ¿en qué puedo ayudarte?", "¡Hola! 👋 Estoy aquí para ayudarte"]
     },
     {
       "tag": "despedida",
-      "patterns": ["Adiós", "Hasta luego", "Nos vemos", "Chao"],
-      "responses": [
-        "¡Hasta luego! 👋",
-        "Que tengas un excelente día 😄"
-      ]
+      "patterns": ["adios", "hasta luego", "nos vemos", "chao"],
+      "responses": ["¡Hasta luego! 👋", "Que tengas un buen día 😄"]
     },
     {
       "tag": "ayuda",
-      "patterns": ["Necesito ayuda", "Tengo un problema", "Soporte", "Ayuda por favor"],
-      "responses": [
-        "Claro 👍 dime cuál es tu problema",
-        "Estoy aquí para ayudarte, cuéntame más"
-      ]
+      "patterns": ["necesito ayuda", "tengo un problema", "soporte", "ayuda"],
+      "responses": ["Claro 👍 dime qué problema tienes", "Estoy aquí para ayudarte"]
     },
     {
       "tag": "gracias",
-      "patterns": ["Gracias", "Muchas gracias", "Te lo agradezco"],
-      "responses": [
-        "¡De nada! 😃",
-        "Con gusto, para eso estoy"
-      ]
+      "patterns": ["gracias", "muchas gracias", "te lo agradezco"],
+      "responses": ["¡De nada! 😃", "Con gusto"]
     },
     {
       "tag": "problema_pedido",
-      "patterns": [
-        "mi pedido no llega",
-        "donde esta mi pedido",
-        "no ha llegado mi compra"
-      ],
-      "responses": [
-        "Déjame ayudarte con tu pedido 📦 ¿Tienes tu número de orden?",
-        "Puedo revisar tu envío, ¿me das más detalles?"
-      ]
+      "patterns": ["mi pedido no llega", "donde esta mi pedido", "no llega compra"],
+      "responses": ["Entiendo 📦 ¿me das tu número de pedido?"]
+    },
+    {
+      "tag": "horarios",
+      "patterns": ["horario", "a que hora abren", "cuando atienden"],
+      "responses": ["Atendemos de 9am a 6pm 🕘"]
+    },
+    {
+      "tag": "contacto",
+      "patterns": ["telefono", "contacto", "como llamo"],
+      "responses": ["📞 555-123-4567"]
     }
   ]
 }

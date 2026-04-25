@@ -2,29 +2,32 @@ from flask import Flask, render_template, request, jsonify, session
 from model import get_response
 
 app = Flask(__name__)
-app.secret_key = "chatbot_secret"
+app.secret_key = "ultra_secret"
 
 @app.route("/")
 def home():
-    if "chat" not in session:
-        session["chat"] = []
+    session.setdefault("chat", [])
+    session.setdefault("context", {})
     return render_template("index.html")
 
 @app.route("/get", methods=["POST"])
 def chat():
-    msg = request.json["message"]
-    response = get_response(msg)
+    msg = request.json.get("message")
+    context = session.get("context", {})
 
-    chat = session.get("chat", [])
-    chat.append({"user": msg, "bot": response})
-    session["chat"] = chat
+    response = get_response(msg, context)
 
-    return jsonify({"response": response, "chat": chat})
+    session["chat"].append({"user": msg, "bot": response})
+    session["context"] = context
+
+    return jsonify({
+        "response": response
+    })
 
 @app.route("/clear")
 def clear():
-    session["chat"] = []
-    return jsonify({"status": "cleared"})
+    session.clear()
+    return jsonify({"status": "ok"})
 
 if __name__ == "__main__":
     app.run(debug=True)

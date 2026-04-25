@@ -128,3 +128,23 @@
 {"mensaje": "852", "respuesta": "\ud83d\udce6 Pedido no encontrado", "hora": "2026-04-24 22:07:05.176578"}
 {"mensaje": "como que no se encuentra?", "respuesta": "El n\u00famero de pedido debe ser num\u00e9rico \ud83d\udd22", "hora": "2026-04-24 22:07:12.311869"}
 {"mensaje": "623", "respuesta": "\ud83d\udce6 Pedido no encontrado", "hora": "2026-04-24 22:07:14.937151"}
+{"mensaje": "hola", "respuesta": "Buenas noches \ud83c\udf19 Hola \ud83d\ude0a \u00bfen qu\u00e9 puedo ayudarte?|menu", "hora": "2026-04-24 22:08:45.363423"}
+{"mensaje": "horario", "respuesta": "Buenas noches \ud83c\udf19 Atendemos de 9am a 6pm \ud83d\udd58", "hora": "2026-04-24 22:08:50.899031"}
+{"mensaje": "adios", "respuesta": "Buenas noches \ud83c\udf19 \u00a1Hasta luego! \ud83d\udc4b", "hora": "2026-04-24 22:09:04.655210"}
+{"mensaje": "hola", "respuesta": "Buenas noches \ud83c\udf19 Hola \ud83d\ude0a \u00bfen qu\u00e9 puedo ayudarte?|menu", "hora": "2026-04-24 22:40:00.699979"}
+{"mensaje": "hola", "respuesta": "Buenas noches \ud83c\udf19 Hola \ud83d\ude0a \u00bfen qu\u00e9 puedo ayudarte?|menu", "hora": "2026-04-24 22:40:11.128830"}
+{"mensaje": "mi pedido no llega", "respuesta": "\ud83d\udce6 \u00bfCu\u00e1l es tu n\u00famero de pedido?", "hora": "2026-04-24 22:40:13.126135"}
+{"mensaje": "4", "respuesta": "\ud83d\udce6 Pedido no encontrado", "hora": "2026-04-24 22:40:15.773963"}
+{"mensaje": "123", "respuesta": "\ud83d\udce6 Pedido no encontrado", "hora": "2026-04-24 22:42:42.580315"}
+{"mensaje": "hola", "respuesta": "Buenas noches 🌙 ¡Hola! 👋 Estoy aquí para ayudarte|menu", "hora": "2026-04-24 22:49:00.622472"}
+{"mensaje": "pedido", "respuesta": "📦 ¿Cuál es tu número de pedido?", "hora": "2026-04-24 22:49:04.614981"}
+{"mensaje": "123", "respuesta": "📦 Pedido no encontrado", "hora": "2026-04-24 22:49:06.436315"}
+{"mensaje": "123", "respuesta": "📦 Pedido no encontrado", "hora": "2026-04-24 22:49:08.447430"}
+{"mensaje": "hola", "respuesta": "Buenas noches 🌙 ¡Hola! 👋 Estoy aquí para ayudarte|menu", "hora": "2026-04-24 22:51:46.685756"}
+{"mensaje": "mi pedido no llega", "respuesta": "📦 ¿Cuál es tu número de pedido?", "hora": "2026-04-24 22:51:48.268545"}
+{"mensaje": "123", "respuesta": "📦 Pedido 123\nEstado: En camino\nUbicación: Veracruz\nEntrega estimada: 2 días|menu", "hora": "2026-04-24 22:51:51.700992"}
+{"mensaje": "horario", "respuesta": "Buenas noches 🌙 Atendemos de 9am a 6pm 🕘", "hora": "2026-04-24 22:52:07.236601"}
+{"mensaje": "contacto", "respuesta": "Buenas noches 🌙 📞 555-123-4567", "hora": "2026-04-24 22:52:10.609360"}
+{"mensaje": "hablar con humano", "respuesta": "Te conectaré con un agente 👨‍💼", "hora": "2026-04-24 22:52:13.094260"}
+{"mensaje": "mi pedido no llega", "respuesta": "📦 ¿Cuál es tu número de pedido?", "hora": "2026-04-24 22:52:17.829257"}
+{"mensaje": "456", "respuesta": "📦 Pedido 456\nEstado: Entregado\nUbicación: CDMX\nEntrega estimada: 0 días|menu", "hora": "2026-04-24 22:52:27.665482"}

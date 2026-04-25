@@ -1,5 +1,3 @@
-<!-- index.html COMPLETO (botones dentro de la misma burbuja del bot) -->
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -96,9 +94,6 @@ function send(){
     if(!msg) return;
 
     const box = document.getElementById("chat-box");
-
-    /* USUARIO */
-
     let userWrap = document.createElement("div");
     userWrap.className = "msg-wrap user-wrap";
 
@@ -116,8 +111,6 @@ function send(){
     saveChat();
 
     input.value = "";
-
-    /* BOT */
 
     let botWrap = document.createElement("div");
     botWrap.className = "msg-wrap bot-wrap";
@@ -167,8 +160,6 @@ function send(){
         typing.innerHTML = "";
 
         typeEffect(text, typing, ()=>{
-
-            /* BOTONES DENTRO DE LA MISMA BURBUJA */
             if(showMenu){
 
                 typing.innerHTML += `

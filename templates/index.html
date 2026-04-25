@@ -1,12 +1,18 @@
+<!-- index.html COMPLETO (botones dentro de la misma burbuja del bot) -->
+
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <title>AI Chatbot</title>
-    <link rel="stylesheet" href="/static/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Chatbot</title>
+<link rel="stylesheet" href="/static/style.css">
 </head>
+
 <body>
 
 <div class="chat-container">
+
     <div class="header">
         🤖 Asistente Inteligente
         <button onclick="clearChat()">🧹</button>
@@ -15,9 +21,13 @@
     <div id="chat-box"></div>
 
     <div class="input-area">
-        <input id="input" type="text" placeholder="Escribe tu mensaje..." onkeypress="handle(event)">
+        <input id="input"
+               type="text"
+               placeholder="Escribe tu mensaje..."
+               onkeypress="handle(event)">
         <button onclick="send()">➤</button>
     </div>
+
 </div>
 
 <script>
@@ -37,10 +47,11 @@ function scrollBottom(){
 }
 
 function saveChat(){
-    localStorage.setItem(
-        "chat",
-        document.getElementById("chat-box").innerHTML
-    );
+    localStorage.setItem("chat", boxHTML());
+}
+
+function boxHTML(){
+    return document.getElementById("chat-box").innerHTML;
 }
 
 function currentHour(){
@@ -50,44 +61,34 @@ function currentHour(){
     return `${h}:${m}`;
 }
 
-function typeEffect(text, element, callback) {
+function playSound(){
+    const audio = new Audio("https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg");
+    audio.volume = 0.2;
+    audio.play().catch(()=>{});
+}
+
+function typeEffect(text, element, callback){
+
     let i = 0;
     element.innerHTML = "";
 
-    function typing() {
-        if (i < text.length) {
+    function typing(){
+
+        if(i < text.length){
             element.innerHTML += text.charAt(i);
             i++;
             scrollBottom();
             setTimeout(typing, 12);
-        } else {
+        }else{
             if(callback) callback();
         }
+
     }
 
     typing();
 }
 
-function playSound(){
-    const audio = new Audio("https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg");
-    audio.volume = 0.2;
-    audio.play().catch(() => {});
-}
-
-function createTypingBubble(){
-    let div = document.createElement("div");
-    div.className = "msg bot";
-    div.innerHTML = `
-        <span class="typing">
-            <span></span>
-            <span></span>
-            <span></span>
-        </span>
-    `;
-    return div;
-}
-
-function send() {
+function send(){
 
     let input = document.getElementById("input");
     let msg = input.value.trim();
@@ -96,7 +97,8 @@ function send() {
 
     const box = document.getElementById("chat-box");
 
-    // Usuario derecha
+    /* USUARIO */
+
     let userWrap = document.createElement("div");
     userWrap.className = "msg-wrap user-wrap";
 
@@ -115,7 +117,8 @@ function send() {
 
     input.value = "";
 
-    // Bot izquierda typing
+    /* BOT */
+
     let botWrap = document.createElement("div");
     botWrap.className = "msg-wrap bot-wrap";
 
@@ -126,9 +129,6 @@ function send() {
     let typing = document.createElement("div");
     typing.className = "msg bot";
 
-    botWrap.appendChild(senderBot);
-    botWrap.appendChild(typing);
-
     typing.innerHTML = `
         <span class="typing">
             <span></span>
@@ -137,33 +137,82 @@ function send() {
         </span>
     `;
 
+    botWrap.appendChild(senderBot);
     botWrap.appendChild(typing);
+
     box.appendChild(botWrap);
 
     scrollBottom();
 
-    fetch("/get", {
-        method: "POST",
-        headers: {"Content-Type":"application/json"},
-        body: JSON.stringify({message: msg})
+    fetch("/get",{
+        method:"POST",
+        headers:{
+            "Content-Type":"application/json"
+        },
+        body:JSON.stringify({
+            message:msg
+        })
     })
     .then(r => r.json())
     .then(data => {
 
+        let text = data.response;
+        let showMenu = false;
+
+        if(text.includes("|menu")){
+            showMenu = true;
+            text = text.replace("|menu","");
+        }
+
         typing.innerHTML = "";
 
-        typeEffect(data.response, typing, () => {
-            typing.innerHTML += `<div class="time">${currentHour()}</div>`;
+        typeEffect(text, typing, ()=>{
+
+            /* BOTONES DENTRO DE LA MISMA BURBUJA */
+            if(showMenu){
+
+                typing.innerHTML += `
+                    <div class="bot-buttons">
+                        <button onclick="quickSend('mi pedido no llega')">
+                            Consultar pedido
+                        </button>
+
+                        <button onclick="quickSend('horario')">
+                            Ver horarios
+                        </button>
+
+                        <button onclick="quickSend('contacto')">
+                            Contacto
+                        </button>
+
+                        <button onclick="quickSend('hablar con humano')">
+                            Hablar con asesor
+                        </button>
+                    </div>
+                `;
+            }
+
+            typing.innerHTML += `
+                <div class="time">${currentHour()}</div>
+            `;
+
             playSound();
             saveChat();
             scrollBottom();
+
         });
 
     });
+
+}
+
+function quickSend(text){
+    document.getElementById("input").value = text;
+    send();
 }
 
 function clearChat(){
-    fetch("/clear").then(() => {
+    fetch("/clear").then(()=>{
         document.getElementById("chat-box").innerHTML = "";
         localStorage.removeItem("chat");
     });

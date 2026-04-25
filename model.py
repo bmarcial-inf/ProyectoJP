@@ -1,3 +1,5 @@
+# model.py
+
 import json
 import random
 import string
@@ -15,7 +17,10 @@ responses = {}
 
 def normalize(text):
     text = text.lower()
-    text = ''.join(c for c in unicodedata.normalize('NFD', text) if unicodedata.category(c) != 'Mn')
+    text = ''.join(
+        c for c in unicodedata.normalize('NFD', text)
+        if unicodedata.category(c) != 'Mn'
+    )
     return text.translate(str.maketrans('', '', string.punctuation))
 
 for intent in data["intents"]:
@@ -38,8 +43,10 @@ def predict_intent(message):
     vec = vectorizer.transform([msg])
     sim = cosine_similarity(vec, X)
     i = sim.argmax()
+
     if sim[0][i] < 0.35:
         return "unknown"
+
     return tags[i]
 
 def get_response(message, context):
@@ -58,18 +65,23 @@ def get_response(message, context):
     nombre = context.get("nombre", "")
     prefijo = f"{nombre}, " if nombre else ""
 
+    # Guardar nombre
     if "mi nombre es" in msg:
         name = message.split("es")[-1].strip()
         context["nombre"] = name
-        return f"Mucho gusto {name} 😊"
+        return f"Mucho gusto {name} 😊|menu"
 
+    # Emociones
     if any(x in msg for x in ["enojado", "molesto", "mal servicio"]):
-        return "Lamento la situación 😔 voy a ayudarte"
+        return "Lamento la situación 😔 voy a ayudarte enseguida."
 
+    # Humano
     if "hablar con humano" in msg:
         return "Te conectaré con un agente 👨‍💼"
 
+    # Flujo pedido
     if context.get("flow") == "pedido":
+
         if not message.isdigit():
             return "El número de pedido debe ser numérico 🔢"
 
@@ -79,28 +91,34 @@ def get_response(message, context):
             return "📦 Pedido no encontrado"
 
         context["flow"] = None
-        return f"📦 Pedido {message}\nEstado: {data['estado']}\nEntrega estimada: {data['dias']} días"
+
+        return f"""📦 Pedido {message}
+Estado: {data['estado']}
+Entrega estimada: {data['dias']} días|menu"""
 
     if intent == "problema_pedido":
         context["flow"] = "pedido"
         return "📦 ¿Cuál es tu número de pedido?"
 
+    # Ayuda
     if intent == "ayuda":
-        context["flow"] = "soporte"
-        return "¿Cuál es el problema? (pedido / pago / cuenta)"
+        return "Claro 👍 ¿Qué necesitas?|menu"
 
-    if context.get("flow") == "soporte":
-        context["flow"] = "detalle"
-        return "Explícame más el problema"
-
+    # No entendido
     if intent == "unknown":
         context["fails"] = context.get("fails", 0) + 1
+
         if context["fails"] >= 3:
-            return "Te conectaré con un agente 👨‍💼"
-        return random.choice(["No entendí 🤔", "¿Puedes repetirlo?", "Explícalo diferente"])
+            return "No logro entenderte bien. Te conectaré con un agente 👨‍💼"
+
+        return "No entendí bien 🤔 ¿Es sobre pedido, horarios o contacto?|menu"
 
     context["fails"] = 0
 
     respuesta = random.choice(responses[intent])
+
+    # Menú en saludos / gracias
+    if intent in ["saludo", "gracias"]:
+        return f"{saludo_tiempo} {prefijo}{respuesta}|menu"
 
     return f"{saludo_tiempo} {prefijo}{respuesta}"

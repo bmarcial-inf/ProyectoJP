@@ -99,3 +99,32 @@
 {"mensaje": "que haces con mi pedido?", "respuesta": "\ud83d\udce6 \u00bfCu\u00e1l es tu n\u00famero de pedido?", "hora": "2026-04-24 21:23:54.724846"}
 {"mensaje": "96523", "respuesta": "\ud83d\udce6 Pedido no encontrado", "hora": "2026-04-24 21:23:57.139930"}
 {"mensaje": "789", "respuesta": "\ud83d\udce6 Pedido 789\nEstado: Retrasado\nEntrega estimada: 5 d\u00edas", "hora": "2026-04-24 21:24:24.825950"}
+{"mensaje": "gracias", "respuesta": "Buenas noches \ud83c\udf19 Con gusto", "hora": "2026-04-24 21:27:07.818005"}
+{"mensaje": "hasta luego", "respuesta": "Buenas noches \ud83c\udf19 \u00a1Hasta luego! \ud83d\udc4b", "hora": "2026-04-24 21:27:12.239831"}
+{"mensaje": "hablar con humano", "respuesta": "Te conectar\u00e9 con un agente \ud83d\udc68\u200d\ud83d\udcbc", "hora": "2026-04-24 21:52:41.052557"}
+{"mensaje": "contacto", "respuesta": "Buenas noches \ud83c\udf19 \ud83d\udcde 555-123-4567", "hora": "2026-04-24 21:52:44.562262"}
+{"mensaje": "horario", "respuesta": "Buenas noches \ud83c\udf19 Atendemos de 9am a 6pm \ud83d\udd58", "hora": "2026-04-24 21:52:46.583224"}
+{"mensaje": "mi pedido no llega", "respuesta": "\ud83d\udce6 \u00bfCu\u00e1l es tu n\u00famero de pedido?", "hora": "2026-04-24 21:52:48.992660"}
+{"mensaje": "mi pedido no llega", "respuesta": "El n\u00famero de pedido debe ser num\u00e9rico \ud83d\udd22", "hora": "2026-04-24 21:53:04.580883"}
+{"mensaje": "hola", "respuesta": "Buenas noches \ud83c\udf19 Hola \ud83d\ude0a \u00bfen qu\u00e9 puedo ayudarte?|menu", "hora": "2026-04-24 21:54:34.551410"}
+{"mensaje": "hola", "respuesta": "Buenas noches \ud83c\udf19 \u00a1Hola! \ud83d\udc4b Estoy aqu\u00ed para ayudarte|menu", "hora": "2026-04-24 21:55:03.241160"}
+{"mensaje": "dame el menu", "respuesta": "No entend\u00ed bien \ud83e\udd14 \u00bfEs sobre pedido, horarios o contacto?|menu", "hora": "2026-04-24 21:55:10.673976"}
+{"mensaje": "hola", "respuesta": "Buenas noches \ud83c\udf19 \u00a1Hola! \ud83d\udc4b Estoy aqu\u00ed para ayudarte|menu", "hora": "2026-04-24 21:56:38.533440"}
+{"mensaje": "mi pedido no llega", "respuesta": "\ud83d\udce6 \u00bfCu\u00e1l es tu n\u00famero de pedido?", "hora": "2026-04-24 21:56:43.931916"}
+{"mensaje": "horario", "respuesta": "El n\u00famero de pedido debe ser num\u00e9rico \ud83d\udd22", "hora": "2026-04-24 21:56:45.840326"}
+{"mensaje": "contacto", "respuesta": "El n\u00famero de pedido debe ser num\u00e9rico \ud83d\udd22", "hora": "2026-04-24 21:56:47.566115"}
+{"mensaje": "hola", "respuesta": "Buenas noches \ud83c\udf19 Hola \ud83d\ude0a \u00bfen qu\u00e9 puedo ayudarte?|menu", "hora": "2026-04-24 21:58:57.618887"}
+{"mensaje": "mi pedido no llega", "respuesta": "\ud83d\udce6 \u00bfCu\u00e1l es tu n\u00famero de pedido?", "hora": "2026-04-24 21:59:01.876315"}
+{"mensaje": "hola", "respuesta": "Buenas noches \ud83c\udf19 \u00a1Hola! \ud83d\udc4b Estoy aqu\u00ed para ayudarte|menu", "hora": "2026-04-24 22:00:16.637906"}
+{"mensaje": "hola", "respuesta": "Buenas noches \ud83c\udf19 \u00a1Hola! \ud83d\udc4b Estoy aqu\u00ed para ayudarte|menu", "hora": "2026-04-24 22:01:21.607934"}
+{"mensaje": "hi", "respuesta": "No entend\u00ed bien \ud83e\udd14 \u00bfEs sobre pedido, horarios o contacto?|menu", "hora": "2026-04-24 22:05:18.422281"}
+{"mensaje": "hola", "respuesta": "Buenas noches \ud83c\udf19 Hola \ud83d\ude0a \u00bfen qu\u00e9 puedo ayudarte?|menu", "hora": "2026-04-24 22:05:22.381109"}
+{"mensaje": "hola", "respuesta": "Buenas noches \ud83c\udf19 \u00a1Hola! \ud83d\udc4b Estoy aqu\u00ed para ayudarte|menu", "hora": "2026-04-24 22:06:32.860196"}
+{"mensaje": "horario", "respuesta": "Buenas noches \ud83c\udf19 Atendemos de 9am a 6pm \ud83d\udd58", "hora": "2026-04-24 22:06:36.452631"}
+{"mensaje": "contacto", "respuesta": "Buenas noches \ud83c\udf19 \ud83d\udcde 555-123-4567", "hora": "2026-04-24 22:06:41.109667"}
+{"mensaje": "hablar con humano", "respuesta": "Te conectar\u00e9 con un agente \ud83d\udc68\u200d\ud83d\udcbc", "hora": "2026-04-24 22:06:43.148176"}
+{"mensaje": "tengo un problema", "respuesta": "Claro \ud83d\udc4d \u00bfQu\u00e9 necesitas?|menu", "hora": "2026-04-24 22:06:52.048563"}
+{"mensaje": "quiero ver mi pedido", "respuesta": "\ud83d\udce6 \u00bfCu\u00e1l es tu n\u00famero de pedido?", "hora": "2026-04-24 22:07:00.385881"}
+{"mensaje": "852", "respuesta": "\ud83d\udce6 Pedido no encontrado", "hora": "2026-04-24 22:07:05.176578"}
+{"mensaje": "como que no se encuentra?", "respuesta": "El n\u00famero de pedido debe ser num\u00e9rico \ud83d\udd22", "hora": "2026-04-24 22:07:12.311869"}
+{"mensaje": "623", "respuesta": "\ud83d\udce6 Pedido no encontrado", "hora": "2026-04-24 22:07:14.937151"}

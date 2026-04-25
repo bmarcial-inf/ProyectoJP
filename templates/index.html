@@ -22,12 +22,18 @@
 
 <script>
 window.onload = () => {
-    document.getElementById("chat-box").innerHTML =
-        localStorage.getItem("chat") || "";
+    const box = document.getElementById("chat-box");
+    box.innerHTML = localStorage.getItem("chat") || "";
+    scrollBottom();
 };
 
 function handle(e){
     if(e.key === "Enter") send();
+}
+
+function scrollBottom(){
+    const box = document.getElementById("chat-box");
+    box.scrollTop = box.scrollHeight;
 }
 
 function saveChat(){
@@ -35,6 +41,13 @@ function saveChat(){
         "chat",
         document.getElementById("chat-box").innerHTML
     );
+}
+
+function currentHour(){
+    const now = new Date();
+    let h = now.getHours().toString().padStart(2,"0");
+    let m = now.getMinutes().toString().padStart(2,"0");
+    return `${h}:${m}`;
 }
 
 function typeEffect(text, element, callback) {
@@ -45,7 +58,8 @@ function typeEffect(text, element, callback) {
         if (i < text.length) {
             element.innerHTML += text.charAt(i);
             i++;
-            setTimeout(typing, 15);
+            scrollBottom();
+            setTimeout(typing, 12);
         } else {
             if(callback) callback();
         }
@@ -54,45 +68,98 @@ function typeEffect(text, element, callback) {
     typing();
 }
 
+function playSound(){
+    const audio = new Audio("https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg");
+    audio.volume = 0.2;
+    audio.play().catch(() => {});
+}
+
+function createTypingBubble(){
+    let div = document.createElement("div");
+    div.className = "msg bot";
+    div.innerHTML = `
+        <span class="typing">
+            <span></span>
+            <span></span>
+            <span></span>
+        </span>
+    `;
+    return div;
+}
+
 function send() {
+
     let input = document.getElementById("input");
     let msg = input.value.trim();
 
     if(!msg) return;
 
-    let box = document.getElementById("chat-box");
+    const box = document.getElementById("chat-box");
 
-    // mensaje usuario normal
-    let userMsg = document.createElement("div");
-    userMsg.className = "msg user";
-    userMsg.innerHTML = "Tú: " + msg;
-    box.appendChild(userMsg);
+    // Usuario derecha
+    let userWrap = document.createElement("div");
+    userWrap.className = "msg-wrap user-wrap";
 
-    // mensaje temporal bot
-    let botMsg = document.createElement("div");
-    botMsg.className = "msg bot";
-    botMsg.innerHTML = "Bot: escribiendo...";
-    box.appendChild(botMsg);
+    userWrap.innerHTML = `
+        <div class="sender">Tú</div>
+        <div class="msg user">
+            ${msg}
+            <div class="time">${currentHour()}</div>
+        </div>
+    `;
 
-    box.scrollTop = box.scrollHeight;
+    box.appendChild(userWrap);
+
+    scrollBottom();
+    saveChat();
+
+    input.value = "";
+
+    // Bot izquierda typing
+    let botWrap = document.createElement("div");
+    botWrap.className = "msg-wrap bot-wrap";
+
+    let senderBot = document.createElement("div");
+    senderBot.className = "sender";
+    senderBot.innerText = "Bot";
+
+    let typing = document.createElement("div");
+    typing.className = "msg bot";
+
+    botWrap.appendChild(senderBot);
+    botWrap.appendChild(typing);
+
+    typing.innerHTML = `
+        <span class="typing">
+            <span></span>
+            <span></span>
+            <span></span>
+        </span>
+    `;
+
+    botWrap.appendChild(typing);
+    box.appendChild(botWrap);
+
+    scrollBottom();
 
     fetch("/get", {
         method: "POST",
-        headers: {"Content-Type": "application/json"},
+        headers: {"Content-Type":"application/json"},
         body: JSON.stringify({message: msg})
     })
     .then(r => r.json())
     .then(data => {
 
-        typeEffect("Bot: " + data.response, botMsg, () => {
-            saveChat(); // guardar solo al terminar
-            box.scrollTop = box.scrollHeight;
+        typing.innerHTML = "";
+
+        typeEffect(data.response, typing, () => {
+            typing.innerHTML += `<div class="time">${currentHour()}</div>`;
+            playSound();
+            saveChat();
+            scrollBottom();
         });
 
     });
-
-    input.value = "";
-    saveChat(); // guarda mensaje usuario estático
 }
 
 function clearChat(){
